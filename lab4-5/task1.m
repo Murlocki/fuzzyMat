@@ -1,7 +1,7 @@
 function outputString = printFuzzySet(setName,universum,degrees)
     outputStr = strcat(setName,' =');
     % Форматируем строки для каждого элемента и конкатенируем их
-    for i = 1:length(universum)-1
+    for i = 1:length(universum)
         outputStr = strcat(outputStr,sprintf(' %s/M(%.2f)+', universum(i), degrees(i)));
     end
     outputStr = outputStr(1:end-1 );
