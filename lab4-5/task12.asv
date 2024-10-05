@@ -1,0 +1,92 @@
+% Определение диапазона значений
+u = linspace(1, 6, 300); % от 1 до 6
+
+% Функция принадлежности для A (немного больше 3)
+A_values = zeros(size(u));
+A_values(u >= 4 & u < 5) = (u(u >= 4 & u < 5) - 4); % Линейное увеличение
+A_values(u == 5) = 0.5; % Пик на u=5
+A_values(u >= 5 & u < 6) = (6 - u(u >= 5 & u < 6)); % Линейное уменьшение
+
+% Функция принадлежности для B (примерно 3)
+B_values = zeros(size(u));
+B_values(u == 1) = 0.3;
+B_values(u == 2) = 0.8;
+B_values(u == 3) = 1;
+B_values(u == 4) = 0.8;
+B_values(u == 5) = 0.3;
+
+% Сложение C(A + B)
+C_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        C_values(i+j-1) = max(C_values(i+j-1), A_values(i) + B_values(j));
+    end
+end
+
+% Вычитание E(A - B)
+E_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        E_values(i-j+1) = max(E_values(i-j+1), A_values(i) - B_values(j));
+    end
+end
+
+% Умножение D(A * B)
+D_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        D_values(i+j-1) = max(D_values(i+j-1), A_values(i) * B_values(j));
+    end
+end
+
+% Деление F(A / B)
+F_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        if (B_values(j) ~= 0)
+            F_values(i+j-1) = max(F_values(i+j-1), A_values(i) / B_values(j));
+        end
+    end
+end
+
+% Максимум G(max(A,B))
+G_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        if (B_values(j) ~= 0)
+            G_values(i+j-1) = max(G_values(i+j-1), max(A_values(i),B_values(j)));
+        end
+    end
+end
+
+% Минимум H(min(A,B))
+H_values = zeros(size(u));
+for i = 1:length(A_values)
+    for j = 1:length(B_values)
+        if (B_values(j) ~= 0)
+            H_values(i+j-1) = max(H_values(i+j-1), min(A_values(i),B_values(j)));
+        end
+    end
+end
+% Построение графиков функций принадлежности
+figure;
+hold on;
+
+% Графики для A и B
+plot(u, A_values, '-o', 'DisplayName', 'A (немного больше 3)', 'LineWidth', 1.5);
+plot(u, B_values, '-s', 'DisplayName', 'B (примерно 3)', 'LineWidth', 1.5);
+
+% Графики для операций
+plot(u, C_values, '-d', 'DisplayName', 'C (A + B)', 'LineWidth', 1.5);
+plot(u, E_values, '-x', 'DisplayName', 'E (A - B)', 'LineWidth', 1.5);
+plot(u, D_values, '-^', 'DisplayName', 'D (A * B)', 'LineWidth', 1.5);
+plot(u, F_values, '-v', 'DisplayName', 'F (A / B)', 'LineWidth', 1.5);
+plot(u, G_values, '--', 'DisplayName', 'G (max(A,B))', 'LineWidth', 1.5);
+plot(u, H_values, '--', 'DisplayName', 'H (min(A,B))', 'LineWidth', 1.5);
+
+xlabel('u');
+ylabel('Степень принадлежности');
+title('Графики функций принадлежности для A, B и операций');
+legend show;
+grid on;
+hold off;
