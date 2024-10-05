@@ -128,6 +128,8 @@ plot(1:7, final_intersection_DIL_AB_C_squared_values, '-s', 'DisplayName', '0.6(
 xlabel('Элементы множества');
 ylabel('Степень принадлежности');
 title('Графики функций принадлежности множеств и операций');
+xticks(1:7);
+xticklabels(U);
 legend show;
 grid on;
 hold off;
