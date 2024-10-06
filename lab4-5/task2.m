@@ -51,7 +51,7 @@ pairwiseComparisonsA = [
     [1/7,1/6,1/6,1/4,1/3,1/2,1,2],
     [1/8,1/7,1/7,1/5,1/4,1/3,1/2,1]
 ];
-disp(checkCon(pairwiseComparisonsA,1.41));
+%disp(checkCon(pairwiseComparisonsA,1.41));
 degreesA = calcDegrees(pairwiseComparisonsA);
 disp(displayNewFuzzySet(degreesA,names,"A"))
 
@@ -66,7 +66,7 @@ pairwiseComparisonsB = [
     [7,6,5,4,3,2,1,1/2],
     [8,7,6,5,4,3,2,1]
 ];
-disp(checkCon(pairwiseComparisonsB,1.41));
+%disp(checkCon(pairwiseComparisonsB,1.41));
 degreesB = calcDegrees(pairwiseComparisonsB);
 disp(displayNewFuzzySet(degreesB,names,"B"))
 
@@ -82,7 +82,7 @@ pairwiseComparisonsC = [
     [1/8,1/7,1/6,1/4,1/3,1/2,1,2],
     [1/9,1/9,1/7,1/5,1/4,1/3,1/2,1]
 ];
-disp(checkCon(pairwiseComparisonsC,1.41));
+%disp(checkCon(pairwiseComparisonsC,1.41));
 degreesC = calcDegrees(pairwiseComparisonsC);
 disp(displayNewFuzzySet(degreesC,names,"C"))
 
@@ -98,7 +98,7 @@ pairwiseComparisonsD = [
     [1/8,1/8,1/6,1/4,1/3,1/2,1,2],
     [1/9,1/9,1/7,1/5,1/4,1/3,1/2,1]
 ];
-disp(checkCon(pairwiseComparisonsD,1.41));
+%disp(checkCon(pairwiseComparisonsD,1.41));
 degreesD = calcDegrees(pairwiseComparisonsD);
 disp(displayNewFuzzySet(degreesD,names,"D"))
 

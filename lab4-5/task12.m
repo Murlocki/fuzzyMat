@@ -79,12 +79,13 @@ for i = 1:length(U_A)
 end
 
 % Максимум G(max(A,B))
+function [G_values, mu_G] = calcMax(U_A,U_B,mu_A,mu_B)
 G_values = [];
 mu_G = [];
 for i = 1:length(U_A)
     for j = 1:length(U_B)
         max_value = max(U_A(i), U_B(j));
-        degree = max(mu_A(i), mu_B(j)); % Используем максимум
+        degree = min(mu_A(i), mu_B(j)); % Используем максимум
         idx = find(G_values == max_value); % Ищем индекс существующего значения
         if isempty(idx)
             G_values(end+1) = max_value; 
@@ -94,8 +95,10 @@ for i = 1:length(U_A)
         end
     end
 end
-
+end;
+[G_values,mu_G] = calcMax(U_A,U_B,mu_A,mu_B);
 % Минимум H(min(A,B))
+function [H_values, mu_H] = calcMin(U_A,U_B,mu_A,mu_B)
 H_values = [];
 mu_H = [];
 for i = 1:length(U_A)
@@ -111,7 +114,8 @@ for i = 1:length(U_A)
         end
     end
 end
-
+end;
+[H_values,mu_H] = calcMin(U_A,U_B,mu_A,mu_B);
 % Сортировка результатов по величине элемента и удаление дубликатов для всех операций
 
 function [sortedValues, sortedDegrees] = sortAndRemoveDuplicates(values, degrees)
@@ -143,11 +147,12 @@ plot(U_B, mu_B, '-s', 'DisplayName', 'B (примерно 3)', 'LineWidth', 1.5)
 
 % Графики для операций с отсортированными значениями и степенями принадлежности 
 plot(C_sorted, mu_C_sorted, '-d', 'DisplayName', 'C (A + B)', 'LineWidth', 1.5);
-plot(E_sorted, mu_E_sorted, '-x', 'DisplayName', 'E (A - B)', 'LineWidth', 1.5);
-plot(D_sorted, mu_D_sorted, '-^', 'DisplayName', 'D (A * B)', 'LineWidth', 1.5);
-plot(F_sorted, mu_F_sorted, '-v', 'DisplayName', 'F (A / B)', 'LineWidth', 1.5);
-plot(G_sorted, mu_G_sorted, '--', 'DisplayName', 'G (max(A,B))', 'LineWidth', 1.5);
-plot(H_sorted, mu_H_sorted, '--', 'DisplayName', 'H (min(A,B))', 'LineWidth', 1.5);
+%plot(E_sorted, mu_E_sorted, '-x', 'DisplayName', 'E (A - B)', 'LineWidth', 1.5);
+%plot(D_sorted, mu_D_sorted, '-^', 'DisplayName', 'D (A * B)', 'LineWidth', 1.5);
+%plot(F_sorted, mu_F_sorted, '-v', 'DisplayName', 'F (A / B)', 'LineWidth', 1.5);
+%plot(G_sorted, mu_G_sorted, '--', 'DisplayName', 'G (max(A,B))', 'LineWidth', 1.5);
+%plot(H_sorted, mu_H_sorted, '--', 'DisplayName', 'H (min(A,B))', 'LineWidth', 1.5);
+
 
 xlabel('Значения');
 ylabel('Степень принадлежности');
@@ -155,3 +160,5 @@ title('Графики функций принадлежности для A и B 
 legend show;
 grid on;
 hold off;
+
+[v,m] = calcMax(U_A,C_values,mu_A,mu_C)
