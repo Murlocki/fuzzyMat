@@ -37,49 +37,49 @@ end;
 % По мощности
 names = 1:6;
 pairwiseComparisonsPower = [
-    [1, 3, 3, 1/2, 2, 1],
-    [1/3, 1, 1, 1/3, 1/2, 1/3],
-    [1/3, 1, 1, 1/3, 1/2, 1/3],
-    [2, 3, 3, 1, 3, 2],
-    [1/2, 2, 2, 1/3, 1, 1/3],
-    [1, 3, 3, 1/2, 1/3, 1],
+    [1,   3,   1/2, 2, 4, 1/4],
+    [1/3, 1,   1/3, 1/2, 3, 1/4],
+    [2,   3,   1,   2, 4, 1/3],
+    [1/2, 2,   1/2, 1, 3, 1/3],
+    [1/4, 1/3, 1/4, 1/3,  1, 1/5],
+    [4,   4,   3,   3,    5, 1],
 ];
 disp(checkCon(pairwiseComparisonsPower,1.24));
 degreesPower = calcDegrees(pairwiseComparisonsPower);
-disp(displayNewFuzzySet(degreesPower,names,"EnginePower"))
+disp(displayNewFuzzySet(degreesPower,names,"Profit"))
 
-% По моменту
+% По крутящему моменту
+names = 1:6;
+pairwiseComparisonsWeight = [
+    [1,   3,   6,   4,   1,   5],
+    [1/3, 1,   5,   3,   1/2, 4],
+    [1/6, 1/5, 1,   1/4, 1/6, 1/3],
+    [1/4, 1/3, 4,   1,   1/4, 1/2],
+    [1,   2,   6,   4,   1,   5],
+    [1/5, 1/4, 3,   2,   1/5, 1],
+];
+disp(checkCon(pairwiseComparisonsWeight,1.24));
+degreesWeight = calcDegrees(pairwiseComparisonsWeight);
+disp(displayNewFuzzySet(degreesWeight,names,"Weight"));
+
+% По крутящему моменту
 names = 1:6;
 pairwiseComparisonsMoment = [
-    [1,   1/3, 1/2, 1,   1/2, 2],
-    [3,   1,   2,   3,   2,   4],
-    [2,   1/2, 1,   2,   1,   3],
-    [1,   1/3, 1/2, 1,   1/2, 2],
-    [2,   1/2, 1,   2,   1,   3],
-    [1/2, 1/4, 1/3, 1/2, 1/3, 1],
+    [1,   3,   1/3, 2,   5,   2],
+    [1/3, 1,   1/4, 1/3, 3,   1/4],
+    [3,   4,   1,   3,   6,   3],
+    [1/2, 3,   1/3, 1,   4,   1],
+    [1/5, 1/3, 1/6, 1/4, 1,   1/5],
+    [1/2, 4,   1/3, 1,   5,   1],
 ];
 disp(checkCon(pairwiseComparisonsMoment,1.24));
 degreesMoment = calcDegrees(pairwiseComparisonsMoment);
 disp(displayNewFuzzySet(degreesMoment,names,"Moment"))
 
-% По весу
-names = 1:6;
-pairwiseComparisonsWeight = [
-    [1,   3,   2,   1/3, 2,   1/5],
-    [1/3, 1,   1/2, 1/4, 1/2, 1/6],
-    [1/2, 2,   1,   1/2,   1, 1/4],
-    [3,   4,   2,   1,   3,   1/2],
-    [1/2, 2,   1,   1/3, 1,   1/4],
-    [5,   6,   4,   2,   4,   1],
-];
-disp(checkCon(pairwiseComparisonsWeight,1.24));
-degreesWeight = calcDegrees(pairwiseComparisonsWeight);
-disp(displayNewFuzzySet(degreesWeight,names,"Weight"))
-
 
 % Сравнение самих критериев
 % По весу
-names = ["Мощность","Момент","Вес"];
+names = ["Мощность","Момент","Масса"];
 pairwiseComparisonsProp = [
     [1,   2,   3],
     [1/2, 1,   2],
@@ -91,4 +91,4 @@ disp(displayNewFuzzySetStr(degreesProps,names,"Props"))
 % Финальное вычисление
 result = cat(2,degreesPower,degreesMoment,degreesWeight) * degreesProps;
 names = 1:6;
-disp(displayNewFuzzySet(result,names,"Engines"));
+disp(displayNewFuzzySet(result,names,"Engine"));

@@ -19,21 +19,19 @@ function degrees = calcDegrees(pairwiseComparisons)
     degrees = pairGeomeanNorm;
 end;
 function outputString = displayNewFuzzySet(degrees,names,setName)
-    outputStr = strcat(setName,' =');
+    outputString = sprintf("%s\n",setName);
     % Форматируем строки для каждого элемента и конкатенируем их
-    for i = 1:length(degrees)-1
-        outputStr = strcat(outputStr,sprintf(" %d/M(%.2f)+", names(i), degrees(i)));
+    for i = 1:length(degrees)
+        outputString = strcat(outputString,sprintf(" %d | %.2f\n", names(i), degrees(i)));
     end;
-    outputString = strcat(outputStr,sprintf(" %d/M(%.2f)", names(length(degrees)), degrees(length(degrees))));
 end;
 
 function outputString = displayNewFuzzySetStr(degrees,names,setName)
-    outputStr = strcat(setName,' =');
+    outputString = sprintf("%s\n",setName);
     % Форматируем строки для каждого элемента и конкатенируем их
-    for i = 1:length(degrees)-1
-        outputStr = strcat(outputStr,sprintf(" %s/M(%.2f)+", names(i), degrees(i)));
+    for i = 1:length(degrees)
+        outputString = strcat(outputString,sprintf(" %s | %.2f\n", names(i), degrees(i)));
     end;
-    outputString = strcat(outputStr,sprintf(" %s/M(%.2f)", names(length(degrees)), degrees(length(degrees))));
 end;
 
 % По прибыли
