@@ -46,7 +46,7 @@ pairwiseComparisonsPower = [
 ];
 disp(checkCon(pairwiseComparisonsPower,1.24));
 degreesPower = calcDegrees(pairwiseComparisonsPower);
-disp(displayNewFuzzySet(degreesPower,names,"Profit"))
+disp(displayNewFuzzySet(degreesPower,names,"Power"))
 
 % По крутящему моменту
 names = 1:6;
