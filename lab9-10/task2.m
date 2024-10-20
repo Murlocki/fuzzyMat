@@ -1,11 +1,14 @@
 function out = calcSmoothTrap(x)
-    for i=1:length(x)
-        if x(i)<4
-            y(i) = smf(x(i),[0,4]);
-        elseif x(i)>=4 && x(i)<6
-            y(i) = 1;
-        else
-            y(i) = zmf(x(i),[6,10]);
+disp(size(x,1));
+    for i=1:size(x,1)
+        for j=1:size(x,2)
+            if x(i,j)<4
+                y(i,j) = smf(x(i,j),[0,4]);
+            elseif x(i,j)>=4 && x(i,j)<6
+                y(i,j) = 1;
+            else
+                y(i,j) = zmf(x(i,j),[6,10]);
+            end;
         end;
     end;
     out = y;
@@ -39,5 +42,6 @@ title("График функции импликации");
 end
 
 x1 = linspace(0,15,1000);
-x2 = linspace(0,10,1000);
+x2 = linspace(0,15,1000);
 calcImplication(x1,x2);
+
