@@ -1,0 +1,69 @@
+[System]
+Name='task4'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='bisector'
+
+[Input1]
+Name='Ошибка'
+Range=[-1 1]
+NumMFs=5
+MF1='BN':'trimf',[-1.2 -1 -0.8]
+MF2='N':'trimf',[-2 -1 0]
+MF3='Z':'trimf',[-0.1 0 0.1]
+MF4='P':'trimf',[0 1 2]
+MF5='BP':'trimf',[0.8 1 1.2]
+
+[Input2]
+Name='Изменение_ошибки'
+Range=[-1 1]
+NumMFs=5
+MF1='BN':'trimf',[-1.12 -1 -0.88]
+MF2='Z':'trimf',[-0.05 0 0.05]
+MF3='BP':'trimf',[0.88 1 1.12]
+MF4='N':'trimf',[-2 -1 0]
+MF5='P':'trimf',[0 1 2]
+
+[Output1]
+Name='Сигнал_управления'
+Range=[-1 1]
+NumMFs=5
+MF1='BN':'trimf',[-1.1 -1 -0.9]
+MF2='Z':'trimf',[-0.03 0 0.03]
+MF3='BP':'trimf',[0.85 1 1.15]
+MF4='N':'trimf',[-2 -1 0]
+MF5='P':'trimf',[0 1 2]
+
+[Rules]
+1 1, 1 (1) : 1
+1 4, 1 (1) : 1
+1 2, 4 (1) : 1
+1 5, 4 (1) : 1
+1 3, 2 (1) : 1
+2 1, 1 (1) : 1
+2 4, 4 (1) : 1
+2 2, 4 (1) : 1
+2 5, 2 (1) : 1
+2 3, 5 (1) : 1
+3 1, 1 (1) : 1
+3 4, 4 (1) : 1
+3 2, 2 (1) : 1
+3 5, 5 (1) : 1
+3 3, 5 (1) : 1
+4 1, 4 (1) : 1
+4 4, 2 (1) : 1
+4 2, 5 (1) : 1
+4 5, 5 (1) : 1
+4 3, 3 (1) : 1
+5 1, 2 (1) : 1
+5 4, 5 (1) : 1
+5 2, 5 (1) : 1
+5 5, 3 (1) : 1
+5 3, 3 (1) : 1
