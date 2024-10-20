@@ -1,5 +1,4 @@
 function out = calcSmoothTrap(x)
-disp(size(x));
     for i=1:size(x,1)
         for j=1:size(x,2)
             if x(i,j)<4
@@ -14,11 +13,11 @@ disp(size(x));
     out = y;
 end;
 
-function out = calcImplication(x1,x2)
-[X,Y] = meshgrid(x1,x2);
+function out = calcImplication(x,x2)
+x1 = linspace(1,15,1000);
 z1 = trimf(x1,[7,10,13]);
 z2 = calcSmoothTrap(x2);
-Z = min(trimf(X,[7,10,13]),calcSmoothTrap(Y));
+Z = min(x,calcSmoothTrap(x2));
 out = Z;
 
 figure
@@ -37,11 +36,14 @@ xlabel("x");
 ylabel("y");
 
 figure
-plot3(X,Y,Z);
+plot(x2,Z);
+ylim([-0.05 1.05]);
 title("График функции импликации");
 end
 
-x1 = linspace(0,15,1000);
-x2 = linspace(0,15,1000);
-calcImplication(x1,x2);
-
+function out = calcDiffuz(m)
+    x2 = linspace(0,15,1500);
+    z=calcImplication(m,x2);
+    out = defuzz(x2,z,'bisector');
+end;
+calcDiffuz(0.4)
