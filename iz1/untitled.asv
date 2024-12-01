@@ -154,9 +154,9 @@ centr = calcCentroid(x,input,rules);
 
 figure;
 hold on;
-plot(x,calcMaxAcc(x,input,rules),'Color','r');
-plot([bis,bis],[0,1],'Color','b','DisplayName','Bissector');
-plot([centr,centr],[0,1],'Color','g','DisplayName','Centroid');
+plot(x,calcMaxAcc(x,input,rules),'Color','r','DisplayName','MaxAcc');
+plot(x,calcSumAcc(x,input,rules),'Color','g','DisplayName','SumAcc');
+plot([bis,bis],[0,1],)
 xlabel('Оценка')
 ylabel('Степень принадлежности')
 legend;
