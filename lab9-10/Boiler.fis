@@ -1,0 +1,59 @@
+[System]
+Name='Boiler'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Температура_воды'
+Range=[1 38]
+NumMFs=5
+MF1='NB':'trapmf',[0 1 5 10]
+MF2='NS':'trimf',[5 10 15]
+MF3='Z':'trimf',[13 17 22]
+MF4='PS':'trimf',[20 25 29]
+MF5='PB':'trapmf',[27 33 38 39]
+
+[Input2]
+Name='Скорость'
+Range=[-2 2]
+NumMFs=3
+MF1='NS':'trapmf',[-3 -2 -1 0]
+MF2='Z':'trimf',[-0.7 0 0.7]
+MF3='PS':'trapmf',[0 1 2 3]
+
+[Output1]
+Name='Угол_поворота'
+Range=[-90 90]
+NumMFs=7
+MF1='NB':'trapmf',[-106 -100 -75 -50]
+MF2='NM':'trimf',[-70 -45 -25]
+MF3='NS':'trimf',[-45 -25 -5]
+MF4='Z':'trimf',[-15 0 15]
+MF5='PS':'trimf',[5 25 45]
+MF6='PM':'trimf',[25 45 70]
+MF7='PB':'trapmf',[50 75 100 105]
+
+[Rules]
+5 3, 1 (1) : 1
+5 1, 3 (1) : 1
+4 3, 2 (1) : 1
+4 1, 4 (1) : 1
+1 1, 7 (1) : 1
+1 3, 5 (1) : 1
+2 1, 6 (1) : 1
+2 3, 4 (1) : 1
+5 2, 2 (1) : 1
+4 2, 3 (1) : 1
+1 2, 6 (1) : 1
+2 2, 5 (1) : 1
+3 3, 3 (1) : 1
+3 1, 5 (1) : 1
+3 2, 4 (1) : 1

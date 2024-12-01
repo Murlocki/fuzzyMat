@@ -57,4 +57,4 @@ function out = calcDiffuz(m)
     h2 = line([out out],[-0.4 1.2],'Color','k');
     hold off;
 end;
-calcDiffuz(0.5)
+calcDiffuz(1)
